@@ -1,0 +1,5 @@
+django
+pinecone-client
+openai
+python-decouple
+pinecone
