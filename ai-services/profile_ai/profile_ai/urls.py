@@ -19,5 +19,5 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('profileai/ai/api/', include('embeddings.urls')),
+    path('profileai/ai/api/', include('embeddings.urls'))
 ]
