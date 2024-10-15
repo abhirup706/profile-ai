@@ -18,6 +18,12 @@ PINECONE_API_KEY = config('PINECONE_API_KEY')
 OPENAI_API_KEY = config('OPENAI_API_KEY')
 PINECONE_INDEX_NAME = config('PINECONE_INDEX_NAME')
 
+# Base directory of the project
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Media (uploaded files) settings
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -33,6 +39,25 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'profile_ai': {  # Replace with your app name
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
 
 # Application definition
 
@@ -43,6 +68,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'embeddings',
+    'job_tools'
 ]
 
 MIDDLEWARE = [

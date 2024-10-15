@@ -3,3 +3,13 @@ pinecone-client
 openai
 python-decouple
 pinecone
+PyPDF2
+requests
+fpdf
+pylatex
+langchain
+langchain-community
+langchain-openai
+pypdf
+scipy
+python-docx
