@@ -1,5 +1,6 @@
 const express = require('express');
 const JournalEntry = require('../models/JournalEntry');
+const JournalService = require('../services/JournalService');
 
 const router = express.Router();
 
@@ -30,9 +31,38 @@ router.post('/journals/entry', async (req, res) => {
 
         const newEntry = new JournalEntry({ userId, title, content });
         await newEntry.save();
-        res.status(201).json(newEntry);
+
+        // Call JournalService to create embeddings using the document ID
+        try {
+            const embeddingResponse = await JournalService.createJournalEmbedding(
+                userId,
+                newEntry._id.toString(),  // MongoDB generated document ID
+                title,
+                content
+            );
+
+            if (embeddingResponse.body.status === 'success') {
+                res.status(201).json({
+                    message: 'Document uploaded and embeddings created successfully',
+                    entry: newEntry
+                });
+
+            }
+            else{
+                console.error('Error while generating embeddings:', embeddingResponse.body.message);
+                res.status(500).json({ error: 'Document uploaded, but embedding creation failed' });
+
+            }
+
+
+
+        } catch (embeddingError) {
+            console.error('Error while generating embeddings:', embeddingError);
+            res.status(500).json({ error: 'Document uploaded, but embedding creation failed' });
+        }
+
     } catch (error) {
-        res.status(500).json({ error: 'Error creating journal entry' });
+        res.status(500).json({ error: 'Error creating journal entry'+error.message });
     }
 });
 
