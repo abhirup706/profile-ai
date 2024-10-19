@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const uploadRoute = require('./routes/uploads');
 const journalRoute = require('./routes/journal');
-const loginAndRegRoute = require('./routes/loginAndReg');
+const loginAndRegRoute = require('./routes/user');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 
