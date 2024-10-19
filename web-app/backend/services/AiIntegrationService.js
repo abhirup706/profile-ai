@@ -22,6 +22,27 @@ async function createJournalEmbedding(userId, documentId, journalTopic, journalT
     }
 }
 
+async function createDocumentEmbedding(userId, documentId, filePath) {
+    const url = `${baseAiServiceUrl}/profileai/ai/embeddings/v1/create_embeddings_doc/`;
+
+    // Payload for the API
+    const payload = {
+        user_id: userId,
+        document_id: documentId,
+        doc_url: filePath
+    };
+
+    try {
+        // Call the external API
+        const response = await axios.post(url, payload);
+        return response.data;
+    } catch (error) {
+        console.error('Error creating journal embedding:', error);
+        throw new Error('Failed to create journal embedding');
+    }
+}
+
 module.exports = {
     createJournalEmbedding,
+    createDocumentEmbedding
 };
