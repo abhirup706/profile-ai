@@ -17,6 +17,7 @@ from decouple import config
 PINECONE_API_KEY = config('PINECONE_API_KEY')
 OPENAI_API_KEY = config('OPENAI_API_KEY')
 PINECONE_INDEX_NAME = config('PINECONE_INDEX_NAME')
+TEX_RESUME_FORMAT_PATH='resumes/sample_tex_format.tex'
 
 # Base directory of the project
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
