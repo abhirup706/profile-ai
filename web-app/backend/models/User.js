@@ -17,11 +17,11 @@ const userSchema = new mongoose.Schema({
         postalCode: { type: String, required: true, match: [/^\d{5}(-\d{4})?$/, 'Please enter a valid postal code'] },
         country: { type: String, required: true }
     }, 
-    website1: {
+    linkedInUrl: {
         type: String,
         match: [/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/, 'Please enter a valid URL']
     }, 
-    website2: {
+    githubUrl: {
         type: String,
         match: [/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/, 'Please enter a valid URL']
     }
