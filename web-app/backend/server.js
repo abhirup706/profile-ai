@@ -8,7 +8,14 @@ const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 
 dotenv.config();
+const cors = require('cors');
 const app = express();
+app.use(cors({
+    origin: 'http://localhost:3000', // Allow frontend requests from localhost:3000
+    methods: 'GET,POST,PUT,DELETE',  // Specify allowed HTTP methods
+    credentials: true                // Allow cookies to be sent if needed
+}));
+
 app.use(express.json());
 app.use('/profileai/web', uploadRoute);
 app.use('/profileai/web', journalRoute);

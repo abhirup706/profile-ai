@@ -1,5 +1,7 @@
 import React from 'react';
 import logo from '../assets/Logo2.png';
+import { Link } from 'react-router-dom';
+
 
 const Header = () => {
     return (
@@ -25,6 +27,9 @@ const Header = () => {
                         </li>
                         <li>
                             <a href="#roadmap" className="hover:text-green-400 transition-colors duration-300">Roadmap</a>
+                        </li>
+                        <li>
+                            <Link to="/try-it-out" className="hover:text-green-400 transition-colors duration-300">Try it Out</Link> {/* Added Try it Out Link */}
                         </li>
                     </ul>
                 </nav>
