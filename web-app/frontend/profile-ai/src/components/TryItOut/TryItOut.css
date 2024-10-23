@@ -1,0 +1,64 @@
+@keyframes floatPlane {
+    0% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(50vw) translateY(-30vh) rotate(180deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateX(-100vw) translateY(40vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.paper-plane {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 511 512.32"><path fill="%23fff" d="M9.72 185.88L489.19 1.53c3.64-1.76 7.96-2.08 12.03-.53 7.83 2.98 11.76 11.74 8.78 19.57L326.47 502.56h-.02c-1.33 3.49-3.94 6.5-7.57 8.25-7.54 3.63-16.6.47-20.23-7.06l-73.78-152.97 146.67-209.97-209.56 146.3L8.6 213.64a15.117 15.117 0 01-7.6-8.25c-2.98-7.79.93-16.53 8.72-19.51z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: floatPlane 15s linear infinite;
+}
+
+.paper-plane:nth-child(1) {
+    top: 10%;
+    left: 0;
+    animation-duration: 12s;
+    animation-delay: 1s;
+}
+
+.paper-plane:nth-child(2) {
+    top: 30%;
+    left: 50%;
+    animation-duration: 16s;
+    animation-delay: 3s;
+}
+
+.paper-plane:nth-child(3) {
+    top: 60%;
+    left: 90%;
+    animation-duration: 20s;
+    animation-delay: 5s;
+}
+
+.paper-plane:nth-child(4) {
+    top: 80%;
+    left: 20%;
+    animation-duration: 18s;
+    animation-delay: 2s;
+}
+
+.register-button {
+    background-color: transparent;
+    border: none;
+    color: #4CAF50;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.register-button:hover {
+    color: #45a049;
+}

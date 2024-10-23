@@ -8,7 +8,7 @@ const router = express.Router();
 console.log("In Login and Resgister")
 
 // Register a User
-router.post('/register', async (req, res) => {
+router.post('/v1/register', async (req, res) => {
     try {
         console.log("Inside Register")
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -27,34 +27,58 @@ router.post('/register', async (req, res) => {
                 postalCode: req.body.address.postalCode,
                 country: req.body.address.country
             }, 
-            website1: req.body.website1,
-            website2: req.body.website2
+            linkedInUrl: req.body.website1,
+            githubUrl: req.body.website2
         })
         const result = await user.save();
-        res.status(200);
-        res.send("User Registered!");
+        res.status(200).json({
+            status: "success",
+            message: "User registered successfully!"
+        });
     } catch (error) {
         //res.status(500).send(error);
         console.error("Error during registration:", error);
-        res.status(500).send({ error: "Server error during registration." });
+        res.status(500).json({
+            status: "error",
+            message: "Server error during registration."
+        });
     }
 });
 
 // Login
-router.post('/login', async (req, res) => {
-    const user = await User.findOne({username: req.body.username});
-    if(user){
-        //compare hashed password
-        const isValidPassword = await bcrypt.compare(req.body.password, user.password)
-        if(isValidPassword){
-            res.status(200).send("Logged in successfully.");
+router.post('/v1/login', async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.body.username });
+        if (user) {
+            // Compare hashed password
+            const isValidPassword = await bcrypt.compare(req.body.password, user.password);
+            if (isValidPassword) {
+                // Send a JSON response with status and message
+                res.status(200).json({
+                    status: "success",
+                    message: "Logged in successfully."
+                });
+            } else {
+                // Send a JSON response with status and message for incorrect password
+                res.status(400).json({
+                    status: "error",
+                    message: "Incorrect password."
+                });
+            }
+        } else {
+            // Send a JSON response with status and message for incorrect username
+            res.status(400).json({
+                status: "error",
+                message: "Incorrect username."
+            });
         }
-        else{
-            res.status(500).send("Incorrect Password");
-        }
-    }
-    else{
-        res.status(500).send("Incorrect Username");
+    } catch (error) {
+        console.error("Error during login:", error);
+        // Send a JSON response with status and message in case of error
+        res.status(500).json({
+            status: "error",
+            message: "Server error during login."
+        });
     }
 });
 
