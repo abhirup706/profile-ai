@@ -53,7 +53,7 @@ const TryItOut = () => {
             <div className="paper-plane"></div>
 
             {/* Content Section */}
-            <div className="flex flex-col lg:flex-row items-stretch w-full lg:w-2/3 max-w-6xl bg-gray-800 p-4 lg:p-8 relative z-10">
+            <div className="flex flex-col lg:flex-row items-stretch w-full lg:w-2/3 max-w-6xl bg-gray-800 p-4 lg:p-0 relative z-10">
                 {/* Left side - Login form */}
                 <div className="w-full lg:w-1/2 bg-gray-900 p-8 shadow-2xl rounded-md flex-grow">
                     <h2 className="text-3xl font-semibold text-white mb-6">Login</h2>
